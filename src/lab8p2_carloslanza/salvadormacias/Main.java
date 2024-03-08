@@ -719,6 +719,9 @@ public class Main extends javax.swing.JFrame {
     private void crearTorneo_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearTorneo_btnMouseClicked
         bg_torneo.setVisible(true);
         bg_admin.setVisible(false);
+        
+        nombreTorneo_tf.setText("");
+        rondas_spinner.setValue(0);
     }//GEN-LAST:event_crearTorneo_btnMouseClicked
 
     private void salir_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salir_btnMouseClicked
@@ -752,12 +755,12 @@ public class Main extends javax.swing.JFrame {
                 if (torneo.equals((Torneo)nombreTorneo)) {
                     if (USER instanceof Participante p) {
                         torneo.getParticipantes().add(p);
+                        JOptionPane.showMessageDialog(this, "¡Se ha unido exitosamente!");
                     }
                     break;
                 }
             }
         }
-        JOptionPane.showMessageDialog(this, "¡Se ha unido exitosamente!");
         
     }//GEN-LAST:event_unirseTorneo_btnMouseClicked
 
@@ -768,6 +771,7 @@ public class Main extends javax.swing.JFrame {
             for (Torneo torneo : torneos) {
                 if (torneo.equals((Torneo)nombreTorneo)) {
                     torneo.setTerminado(true);
+                    JOptionPane.showMessageDialog(this, "¡Se cerró el torneo!");
                     break;
                 }
             }
@@ -786,6 +790,7 @@ public class Main extends javax.swing.JFrame {
                             try {
                                 escribirArchivo(participante, torneo);
                             } catch (IOException ex) {}
+                            JOptionPane.showMessageDialog(this, "¡Ha ganado " + participante + "!");
                         }
                     }
                     break;
