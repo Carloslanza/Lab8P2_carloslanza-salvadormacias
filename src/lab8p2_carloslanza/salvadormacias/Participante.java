@@ -20,7 +20,7 @@ public class Participante extends User {
     
     @Override
     public String toString() {
-        return "Participante{" + "torneos=" + torneos + '}';
+        return super.toString();
     }
     
 }

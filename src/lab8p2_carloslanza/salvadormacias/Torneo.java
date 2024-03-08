@@ -1,20 +1,20 @@
 package lab8p2_carloslanza.salvadormacias;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Torneo {
+public class Torneo implements Serializable {
     private String nombre;
     private ArrayList<Participante> participantes;
-    private boolean inscripciónAbierta;
-    private boolean terminado;
+    private boolean inscripciónAbierta = true;
+    private int rondas;
+    private boolean terminado = false;
     private Participante ganador;
 
-    public Torneo(String nombre, ArrayList<Participante> participantes, boolean inscripciónAbierta, boolean terminado, Participante ganador) {
+    public Torneo(String nombre, int rondas) {
         this.nombre = nombre;
-        this.participantes = participantes;
-        this.inscripciónAbierta = inscripciónAbierta;
-        this.terminado = terminado;
-        this.ganador = ganador;
+        this.rondas = rondas;
+        participantes = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -41,6 +41,14 @@ public class Torneo {
         this.inscripciónAbierta = inscripciónAbierta;
     }
 
+    public int getRondas() {
+        return rondas;
+    }
+
+    public void setRondas(int rondas) {
+        this.rondas = rondas;
+    }
+    
     public boolean isTerminado() {
         return terminado;
     }
@@ -59,7 +67,7 @@ public class Torneo {
 
     @Override
     public String toString() {
-        return "Torneo{" + "nombre=" + nombre + ", participantes=" + participantes + ", inscripci\u00f3nAbierta=" + inscripciónAbierta + ", terminado=" + terminado + ", ganador=" + ganador + '}';
+        return nombre;
     }
     
 }

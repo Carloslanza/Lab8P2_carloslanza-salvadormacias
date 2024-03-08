@@ -1,6 +1,8 @@
 package lab8p2_carloslanza.salvadormacias;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String usuario;
     private String password;
 
@@ -27,7 +29,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "usuario=" + usuario + ", password=" + password + '}';
+        return usuario;
     }
     
 }

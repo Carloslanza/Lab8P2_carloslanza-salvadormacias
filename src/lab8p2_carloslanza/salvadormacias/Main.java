@@ -1,5 +1,19 @@
 package lab8p2_carloslanza.salvadormacias;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 public class Main extends javax.swing.JFrame {
 
     /**
@@ -7,6 +21,11 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        bg_signIn.setVisible(false);
+        bg_admin.setVisible(false);
+        bg_torneo.setVisible(false);
+        bg_participante.setVisible(false);
+        cargarBinario();
     }
 
     /**
@@ -18,21 +37,762 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bg_logIn = new javax.swing.JPanel();
+        bg_rojo = new javax.swing.JPanel();
+        logo = new javax.swing.JLabel();
+        userLogin_txt = new javax.swing.JLabel();
+        userLogin_tf = new javax.swing.JTextField();
+        passwordLogin_txt = new javax.swing.JLabel();
+        passwordLogin_tf = new javax.swing.JTextField();
+        registrarSesion_btn = new javax.swing.JButton();
+        iniciarSesion_btn = new javax.swing.JButton();
+        bg_signIn = new javax.swing.JPanel();
+        bg_rojo1 = new javax.swing.JPanel();
+        userLogin_txt1 = new javax.swing.JLabel();
+        userSignIn_tf = new javax.swing.JTextField();
+        passwordLogin_txt1 = new javax.swing.JLabel();
+        passwordSignIn_tf = new javax.swing.JTextField();
+        crearUsuario_btn = new javax.swing.JButton();
+        participante_btn = new javax.swing.JCheckBox();
+        admin_btn = new javax.swing.JCheckBox();
+        bg_admin = new javax.swing.JPanel();
+        bg_rojo2 = new javax.swing.JPanel();
+        salir1_btn = new javax.swing.JButton();
+        crearTorneo_btn = new javax.swing.JButton();
+        torneos_txt = new javax.swing.JLabel();
+        personas_txt = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        torneos_list = new javax.swing.JList<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        personas_list = new javax.swing.JList<>();
+        cerrarTorneo_btn = new javax.swing.JButton();
+        marcarGanador_btn = new javax.swing.JButton();
+        bg_torneo = new javax.swing.JPanel();
+        bg_rojo3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        nombreTorneo_tf = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        rondas_spinner = new javax.swing.JSpinner();
+        crearTorneo2_btn = new javax.swing.JButton();
+        bg_participante = new javax.swing.JPanel();
+        bg_rojo4 = new javax.swing.JPanel();
+        salir_btn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        cerrados_lista = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ganados_lista = new javax.swing.JList<>();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        disponibles_lista = new javax.swing.JList<>();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        unirseTorneo_btn = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        bg_logIn.setBackground(new java.awt.Color(255, 255, 255));
+        bg_logIn.setMaximumSize(new java.awt.Dimension(603, 500));
+        bg_logIn.setMinimumSize(new java.awt.Dimension(603, 500));
+
+        bg_rojo.setBackground(new java.awt.Color(255, 0, 0));
+
+        javax.swing.GroupLayout bg_rojoLayout = new javax.swing.GroupLayout(bg_rojo);
+        bg_rojo.setLayout(bg_rojoLayout);
+        bg_rojoLayout.setHorizontalGroup(
+            bg_rojoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        bg_rojoLayout.setVerticalGroup(
+            bg_rojoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Unitec Logo.png"))); // NOI18N
+
+        userLogin_txt.setForeground(new java.awt.Color(51, 51, 255));
+        userLogin_txt.setText("Nombre de Usuario");
+
+        passwordLogin_txt.setForeground(new java.awt.Color(255, 0, 51));
+        passwordLogin_txt.setText("Password");
+
+        registrarSesion_btn.setBackground(new java.awt.Color(0, 51, 204));
+        registrarSesion_btn.setForeground(new java.awt.Color(255, 255, 255));
+        registrarSesion_btn.setText("Registrar");
+        registrarSesion_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registrarSesion_btnMouseClicked(evt);
+            }
+        });
+
+        iniciarSesion_btn.setBackground(new java.awt.Color(255, 0, 0));
+        iniciarSesion_btn.setForeground(new java.awt.Color(255, 255, 255));
+        iniciarSesion_btn.setText("Iniciar Sesion");
+        iniciarSesion_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iniciarSesion_btnMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bg_logInLayout = new javax.swing.GroupLayout(bg_logIn);
+        bg_logIn.setLayout(bg_logInLayout);
+        bg_logInLayout.setHorizontalGroup(
+            bg_logInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bg_logInLayout.createSequentialGroup()
+                .addComponent(bg_rojo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(bg_logInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bg_logInLayout.createSequentialGroup()
+                        .addGap(0, 211, Short.MAX_VALUE)
+                        .addComponent(logo))
+                    .addGroup(bg_logInLayout.createSequentialGroup()
+                        .addGroup(bg_logInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(bg_logInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(userLogin_txt)
+                                .addComponent(userLogin_tf)
+                                .addComponent(passwordLogin_txt)
+                                .addComponent(passwordLogin_tf, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
+                            .addComponent(registrarSesion_btn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(iniciarSesion_btn)
+                        .addContainerGap())))
+        );
+        bg_logInLayout.setVerticalGroup(
+            bg_logInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bg_rojo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(bg_logInLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(logo)
+                .addGap(35, 35, 35)
+                .addComponent(userLogin_txt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userLogin_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(passwordLogin_txt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(passwordLogin_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
+                .addGroup(bg_logInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registrarSesion_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(iniciarSesion_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61))
+        );
+
+        bg_signIn.setBackground(new java.awt.Color(255, 255, 255));
+        bg_signIn.setMaximumSize(new java.awt.Dimension(603, 500));
+        bg_signIn.setMinimumSize(new java.awt.Dimension(603, 500));
+        bg_signIn.setPreferredSize(new java.awt.Dimension(603, 500));
+
+        bg_rojo1.setBackground(new java.awt.Color(255, 0, 0));
+
+        javax.swing.GroupLayout bg_rojo1Layout = new javax.swing.GroupLayout(bg_rojo1);
+        bg_rojo1.setLayout(bg_rojo1Layout);
+        bg_rojo1Layout.setHorizontalGroup(
+            bg_rojo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        bg_rojo1Layout.setVerticalGroup(
+            bg_rojo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        userLogin_txt1.setForeground(new java.awt.Color(51, 51, 255));
+        userLogin_txt1.setText("Nombre de Usuario");
+
+        passwordLogin_txt1.setForeground(new java.awt.Color(255, 0, 51));
+        passwordLogin_txt1.setText("Password");
+
+        crearUsuario_btn.setBackground(new java.awt.Color(255, 0, 0));
+        crearUsuario_btn.setForeground(new java.awt.Color(255, 255, 255));
+        crearUsuario_btn.setText("Crear");
+        crearUsuario_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                crearUsuario_btnMouseClicked(evt);
+            }
+        });
+
+        participante_btn.setText("Participante");
+
+        admin_btn.setText("Administrador");
+
+        javax.swing.GroupLayout bg_signInLayout = new javax.swing.GroupLayout(bg_signIn);
+        bg_signIn.setLayout(bg_signInLayout);
+        bg_signInLayout.setHorizontalGroup(
+            bg_signInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bg_signInLayout.createSequentialGroup()
+                .addComponent(bg_rojo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(bg_signInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bg_signInLayout.createSequentialGroup()
+                        .addGroup(bg_signInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(userLogin_txt1)
+                            .addComponent(userSignIn_tf)
+                            .addComponent(passwordLogin_txt1)
+                            .addComponent(passwordSignIn_tf, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
+                        .addComponent(crearUsuario_btn))
+                    .addGroup(bg_signInLayout.createSequentialGroup()
+                        .addComponent(participante_btn)
+                        .addGap(18, 18, 18)
+                        .addComponent(admin_btn)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        bg_signInLayout.setVerticalGroup(
+            bg_signInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bg_rojo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(bg_signInLayout.createSequentialGroup()
+                .addGap(109, 109, 109)
+                .addComponent(userLogin_txt1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userSignIn_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(passwordLogin_txt1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(passwordSignIn_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(bg_signInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(participante_btn)
+                    .addComponent(admin_btn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addComponent(crearUsuario_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
+        );
+
+        bg_admin.setBackground(new java.awt.Color(255, 255, 255));
+        bg_admin.setMaximumSize(new java.awt.Dimension(603, 500));
+        bg_admin.setMinimumSize(new java.awt.Dimension(603, 500));
+
+        bg_rojo2.setBackground(new java.awt.Color(255, 0, 0));
+
+        salir1_btn.setBackground(new java.awt.Color(0, 51, 204));
+        salir1_btn.setForeground(new java.awt.Color(255, 255, 255));
+        salir1_btn.setText("Salir");
+        salir1_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salir1_btnMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bg_rojo2Layout = new javax.swing.GroupLayout(bg_rojo2);
+        bg_rojo2.setLayout(bg_rojo2Layout);
+        bg_rojo2Layout.setHorizontalGroup(
+            bg_rojo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_rojo2Layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(salir1_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
+        );
+        bg_rojo2Layout.setVerticalGroup(
+            bg_rojo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_rojo2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(salir1_btn)
+                .addGap(32, 32, 32))
+        );
+
+        crearTorneo_btn.setBackground(new java.awt.Color(0, 51, 204));
+        crearTorneo_btn.setForeground(new java.awt.Color(255, 255, 255));
+        crearTorneo_btn.setText("Crear Torneo");
+        crearTorneo_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                crearTorneo_btnMouseClicked(evt);
+            }
+        });
+
+        torneos_txt.setForeground(new java.awt.Color(255, 0, 0));
+        torneos_txt.setText("Torneos");
+
+        personas_txt.setForeground(new java.awt.Color(0, 0, 204));
+        personas_txt.setText("Personas dentro del Torneo");
+
+        torneos_list.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                torneos_listMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(torneos_list);
+
+        jScrollPane4.setViewportView(personas_list);
+
+        cerrarTorneo_btn.setBackground(new java.awt.Color(255, 0, 0));
+        cerrarTorneo_btn.setForeground(new java.awt.Color(255, 255, 255));
+        cerrarTorneo_btn.setText("Cerrar Torneo");
+        cerrarTorneo_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cerrarTorneo_btnMouseClicked(evt);
+            }
+        });
+
+        marcarGanador_btn.setBackground(new java.awt.Color(255, 0, 0));
+        marcarGanador_btn.setForeground(new java.awt.Color(255, 255, 255));
+        marcarGanador_btn.setText("Marcar Ganador");
+        marcarGanador_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                marcarGanador_btnMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bg_adminLayout = new javax.swing.GroupLayout(bg_admin);
+        bg_admin.setLayout(bg_adminLayout);
+        bg_adminLayout.setHorizontalGroup(
+            bg_adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bg_adminLayout.createSequentialGroup()
+                .addComponent(bg_rojo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(bg_adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bg_adminLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46))
+                    .addGroup(bg_adminLayout.createSequentialGroup()
+                        .addGroup(bg_adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(bg_adminLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(crearTorneo_btn))
+                            .addGroup(bg_adminLayout.createSequentialGroup()
+                                .addGap(97, 97, 97)
+                                .addComponent(torneos_txt)
+                                .addGap(153, 153, 153)
+                                .addComponent(personas_txt)))
+                        .addContainerGap(81, Short.MAX_VALUE))
+                    .addGroup(bg_adminLayout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(cerrarTorneo_btn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(marcarGanador_btn)
+                        .addGap(77, 77, 77))))
+        );
+        bg_adminLayout.setVerticalGroup(
+            bg_adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bg_rojo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(bg_adminLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(crearTorneo_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addGroup(bg_adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(torneos_txt)
+                    .addComponent(personas_txt))
+                .addGap(22, 22, 22)
+                .addGroup(bg_adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3))
+                .addGap(28, 28, 28)
+                .addGroup(bg_adminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cerrarTorneo_btn)
+                    .addComponent(marcarGanador_btn))
+                .addContainerGap(116, Short.MAX_VALUE))
+        );
+
+        bg_torneo.setBackground(new java.awt.Color(255, 255, 255));
+        bg_torneo.setMaximumSize(new java.awt.Dimension(603, 500));
+        bg_torneo.setMinimumSize(new java.awt.Dimension(603, 500));
+
+        bg_rojo3.setBackground(new java.awt.Color(255, 0, 0));
+
+        javax.swing.GroupLayout bg_rojo3Layout = new javax.swing.GroupLayout(bg_rojo3);
+        bg_rojo3.setLayout(bg_rojo3Layout);
+        bg_rojo3Layout.setHorizontalGroup(
+            bg_rojo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        bg_rojo3Layout.setVerticalGroup(
+            bg_rojo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 514, Short.MAX_VALUE)
+        );
+
+        jLabel1.setForeground(new java.awt.Color(0, 51, 204));
+        jLabel1.setText("Nombre del Torneo");
+
+        jLabel2.setForeground(new java.awt.Color(0, 51, 204));
+        jLabel2.setText("Rondas");
+
+        crearTorneo2_btn.setBackground(new java.awt.Color(0, 0, 204));
+        crearTorneo2_btn.setForeground(new java.awt.Color(255, 255, 255));
+        crearTorneo2_btn.setText("Crear Torneo");
+        crearTorneo2_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                crearTorneo2_btnMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bg_torneoLayout = new javax.swing.GroupLayout(bg_torneo);
+        bg_torneo.setLayout(bg_torneoLayout);
+        bg_torneoLayout.setHorizontalGroup(
+            bg_torneoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bg_torneoLayout.createSequentialGroup()
+                .addComponent(bg_rojo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(bg_torneoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bg_torneoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(bg_torneoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
+                            .addComponent(nombreTorneo_tf, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
+                            .addComponent(rondas_spinner)))
+                    .addGroup(bg_torneoLayout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addComponent(crearTorneo2_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(232, Short.MAX_VALUE))
+        );
+        bg_torneoLayout.setVerticalGroup(
+            bg_torneoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bg_rojo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(bg_torneoLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nombreTorneo_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rondas_spinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86)
+                .addComponent(crearTorneo2_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        bg_participante.setBackground(new java.awt.Color(255, 255, 255));
+        bg_participante.setMaximumSize(new java.awt.Dimension(603, 500));
+        bg_participante.setMinimumSize(new java.awt.Dimension(603, 500));
+
+        bg_rojo4.setBackground(new java.awt.Color(255, 0, 0));
+
+        salir_btn.setBackground(new java.awt.Color(0, 51, 204));
+        salir_btn.setForeground(new java.awt.Color(255, 255, 255));
+        salir_btn.setText("Salir");
+        salir_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salir_btnMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bg_rojo4Layout = new javax.swing.GroupLayout(bg_rojo4);
+        bg_rojo4.setLayout(bg_rojo4Layout);
+        bg_rojo4Layout.setHorizontalGroup(
+            bg_rojo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bg_rojo4Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(salir_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+        bg_rojo4Layout.setVerticalGroup(
+            bg_rojo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_rojo4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(salir_btn)
+                .addGap(24, 24, 24))
+        );
+
+        jScrollPane1.setViewportView(cerrados_lista);
+
+        jScrollPane2.setViewportView(ganados_lista);
+
+        jScrollPane5.setViewportView(disponibles_lista);
+
+        jLabel5.setText("Torneo Disponibles");
+
+        jLabel6.setText("Torneo Ganados");
+
+        jLabel7.setText("Torneo Cerrados");
+
+        unirseTorneo_btn.setText("Unirse a Torneo");
+        unirseTorneo_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                unirseTorneo_btnMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bg_participanteLayout = new javax.swing.GroupLayout(bg_participante);
+        bg_participante.setLayout(bg_participanteLayout);
+        bg_participanteLayout.setHorizontalGroup(
+            bg_participanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bg_participanteLayout.createSequentialGroup()
+                .addComponent(bg_rojo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(bg_participanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bg_participanteLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addGap(67, 67, 67)
+                        .addComponent(jLabel6)
+                        .addGap(49, 49, 49))
+                    .addGroup(bg_participanteLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(bg_participanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(unirseTorneo_btn)
+                            .addGroup(bg_participanteLayout.createSequentialGroup()
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(12, Short.MAX_VALUE))))
+        );
+        bg_participanteLayout.setVerticalGroup(
+            bg_participanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bg_rojo4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(bg_participanteLayout.createSequentialGroup()
+                .addGroup(bg_participanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bg_participanteLayout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(jLabel5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_participanteLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(bg_participanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(bg_participanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2))
+                .addGap(27, 27, 27)
+                .addComponent(unirseTorneo_btn)
+                .addContainerGap(91, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(bg_logIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(10, 10, 10)
+                    .addComponent(bg_signIn, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(bg_admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(bg_torneo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(bg_participante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(bg_logIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(10, 10, 10)
+                    .addComponent(bg_signIn, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(bg_admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(bg_torneo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(bg_participante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void registrarSesion_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrarSesion_btnMouseClicked
+        bg_logIn.setVisible(false);
+        bg_signIn.setVisible(true);
+    }//GEN-LAST:event_registrarSesion_btnMouseClicked
+
+    private void crearUsuario_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearUsuario_btnMouseClicked
+        if (participante_btn.isSelected() && admin_btn.isSelected()) {
+            JOptionPane.showMessageDialog(this, "¡Solo se puede escoger participante o administrador!");
+        } else if (participante_btn.isSelected()) {
+            Participante participante = new Participante(
+                    userSignIn_tf.getText(),
+                    passwordSignIn_tf.getText()
+            );
+
+            if (!existeUsuario(participante)) {
+                guardarBinario("data", participante);
+                usuarios.add(participante);
+
+                JOptionPane.showMessageDialog(this, "¡Participante creado exitosamente!");
+                bg_logIn.setVisible(true);
+                bg_signIn.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(this, "¡Ya existe el usuario!");
+            }
+        } else if (admin_btn.isSelected()) {
+            Admin administrador = new Admin(
+                    userSignIn_tf.getText(),
+                    passwordSignIn_tf.getText()
+            );
+
+            if (!existeUsuario(administrador)) {
+                guardarBinario("data", administrador);
+                usuarios.add(administrador);
+
+                JOptionPane.showMessageDialog(this, "¡Admin creado exitosamente!");
+                bg_logIn.setVisible(true);
+                bg_signIn.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(this, "¡Ya existe el usuario!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "¡No hay nada que crear!");
+        }
+
+        userSignIn_tf.setText("");
+        passwordSignIn_tf.setText("");
+        participante_btn.setSelected(false);
+        admin_btn.setSelected(false);
+
+    }//GEN-LAST:event_crearUsuario_btnMouseClicked
+
+    private void iniciarSesion_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iniciarSesion_btnMouseClicked
+        if (!usuarios.isEmpty()) {
+            String usuario = userLogin_tf.getText();
+            String password = passwordLogin_tf.getText();
+
+            User user = login(usuario, password);
+
+            if (user == null) {
+                JOptionPane.showMessageDialog(this, "¡Usuario o contraseña incorrecta!");
+            } else if (user instanceof Admin a) {
+                USER = a;
+                
+                if (!torneos.isEmpty()) {
+                    llenarTorneosLista();
+                }
+                
+                bg_admin.setVisible(true);
+                bg_logIn.setVisible(false);
+            } else if (user instanceof Participante p) {
+                USER = p;
+                
+                if (!torneos.isEmpty()) {
+                    llenarLista_TorneosDisponibles();
+                    llenarLista_TorneosGanados(user);
+                    llenarLista_TorneosCerrados();
+                }
+                
+                bg_participante.setVisible(true);
+                bg_logIn.setVisible(false);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "¡No existen usuarios!");
+        }
+
+        userLogin_tf.setText("");
+        passwordLogin_tf.setText("");
+    }//GEN-LAST:event_iniciarSesion_btnMouseClicked
+
+    private void crearTorneo2_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearTorneo2_btnMouseClicked
+        if (nombreTorneo_tf.getText().isEmpty()
+                && (int) rondas_spinner.getValue() == 0) {
+            JOptionPane.showMessageDialog(this, "¡No hay nada que crear!");
+        } else {
+            Torneo torneo = new Torneo(
+                    nombreTorneo_tf.getText(),
+                    (int) rondas_spinner.getValue()
+            );
+
+            guardarBinario("data", torneo);
+            torneos.add(torneo);
+
+            JOptionPane.showMessageDialog(this, "¡Torneo creado exitosamente!");
+            bg_torneo.setVisible(false);
+            bg_admin.setVisible(true);
+        }
+        llenarTorneosLista();
+    }//GEN-LAST:event_crearTorneo2_btnMouseClicked
+
+    private void crearTorneo_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearTorneo_btnMouseClicked
+        bg_torneo.setVisible(true);
+        bg_admin.setVisible(false);
+    }//GEN-LAST:event_crearTorneo_btnMouseClicked
+
+    private void salir_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salir_btnMouseClicked
+        bg_participante.setVisible(false);
+        bg_logIn.setVisible(true);
+    }//GEN-LAST:event_salir_btnMouseClicked
+
+    private void salir1_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salir1_btnMouseClicked
+        bg_admin.setVisible(false);
+        bg_logIn.setVisible(true);
+    }//GEN-LAST:event_salir1_btnMouseClicked
+
+    private void torneos_listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_torneos_listMouseClicked
+        
+        if (!torneos.isEmpty()) {
+            Object nombreTorneo = (Object)torneos_list.getSelectedValue();
+            for (Torneo torneo : torneos) {
+                if (torneo.equals((Torneo)nombreTorneo)) {
+                    llenarParticipantesLista(torneo);
+                    break;
+                }
+            }
+        }
+    }//GEN-LAST:event_torneos_listMouseClicked
+
+    private void unirseTorneo_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unirseTorneo_btnMouseClicked
+        
+        if (!torneos.isEmpty()) {
+            String nombreTorneo = disponibles_lista.getSelectedValue();
+            for (Torneo torneo : torneos) {
+                if (torneo.getNombre().equals(nombreTorneo)) {
+                    if (USER instanceof Participante p) {
+                        torneo.getParticipantes().add(p);
+                    }
+                    break;
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(this, "¡Se ha unido exitosamente!");
+        
+    }//GEN-LAST:event_unirseTorneo_btnMouseClicked
+
+    private void cerrarTorneo_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarTorneo_btnMouseClicked
+        
+        if (!torneos.isEmpty()) {
+            String nombreTorneo = torneos_list.getSelectedValue();
+            for (Torneo torneo : torneos) {
+                if (torneo.getNombre().equals(nombreTorneo)) {
+                    torneo.setTerminado(true);
+                    break;
+                }
+            }
+        }
+    }//GEN-LAST:event_cerrarTorneo_btnMouseClicked
+
+    private void marcarGanador_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_marcarGanador_btnMouseClicked
+        if (!torneos.isEmpty()) {
+            String nombreTorneo = torneos_list.getSelectedValue();
+            String nombreParticipante = personas_list.getSelectedValue();
+            for (Torneo torneo : torneos) {
+                if (torneo.getNombre().equals(nombreTorneo)) {
+                    for (Participante participante : torneo.getParticipantes()) {
+                        if (participante.getUsuario().equals(nombreParticipante)) {
+                            torneo.setGanador(participante);
+                            try {
+                                escribirArchivo(participante, torneo);
+                            } catch (IOException ex) {}
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+    }//GEN-LAST:event_marcarGanador_btnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -69,6 +829,196 @@ public class Main extends javax.swing.JFrame {
         });
     }
 
+    private User login(String user, String password) {
+        for (User usuario : usuarios) {
+            if (user.equals(usuario.getUsuario())
+                    && password.equals(usuario.getPassword())) {
+                return usuario;
+            }
+        }
+        return null;
+    }
+
+    private boolean existeUsuario(User user) {
+        for (User usuario : usuarios) {
+            if (usuario.equals(user)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+        private void llenarTorneosLista() {
+        DefaultListModel modelo = new DefaultListModel();
+        modelo.clear();
+        
+        for (Torneo t : torneos) {
+            modelo.addElement(t);
+        }
+        torneos_list.setModel(modelo);
+    }
+    
+    private void llenarParticipantesLista(Torneo torneo) {
+        DefaultListModel modelo = new DefaultListModel();
+        modelo.clear();
+        for (Participante p : torneo.getParticipantes()) {
+            modelo.addElement(p);
+        }
+        personas_list.setModel(modelo);
+    }
+    
+    private void llenarLista_TorneosDisponibles() {
+        DefaultListModel modelo = new DefaultListModel();
+        modelo.clear();
+        for (Torneo t : torneos) {
+            if (t.isInscripciónAbierta() && !t.isTerminado()) {
+                modelo.addElement(t);
+            }
+        }
+        disponibles_lista.setModel(modelo);
+    }
+    
+    private void llenarLista_TorneosCerrados() {
+        DefaultListModel modelo = new DefaultListModel();
+        modelo.clear();
+        for (Torneo t : torneos) {
+            if (t.isTerminado()) {
+                modelo.addElement(t);
+            }
+        }
+        cerrados_lista.setModel(modelo);
+    }
+    
+    private void llenarLista_TorneosGanados(User user) {
+        DefaultListModel modelo = new DefaultListModel();
+        modelo.clear();
+        for (Torneo t : torneos) {
+            if (t.getGanador() != null) {
+                if (t.getGanador().equals(user)) {
+                    modelo.addElement(t);
+                }
+            }
+        }
+        ganados_lista.setModel(modelo);
+    }
+
+    private void cargarBinario() {
+        try {
+            File file = new File("./data.cs");
+            FileInputStream entrada = new FileInputStream(file);
+            
+            ObjectInputStream objeto = new ObjectInputStream(entrada);
+            Object objetoArchivo = objeto.readObject();
+            
+            System.out.println(objeto.readObject());
+            if (objetoArchivo instanceof User user) {
+                usuarios.add(user);
+            } else if (objetoArchivo instanceof Torneo torneo) {
+                torneos.add(torneo);
+            }
+        } catch(IOException | ClassNotFoundException ex) {
+        }
+    }
+
+    private void guardarBinario(String path, Object object) {
+        FileOutputStream fw = null;
+        ObjectOutputStream bw = null;
+        try {
+            File fichero = new File("./" + path + ".cs");
+
+            fw = new FileOutputStream(fichero);
+            bw = new ObjectOutputStream(fw);
+            
+            if (object instanceof User user) {
+                bw.writeObject(user);
+                bw.flush();
+            } else if (object instanceof Torneo torneo) {
+                bw.writeObject(torneo);
+                bw.flush();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+        }
+    }
+        
+        public void escribirArchivo(Participante p, Torneo t) throws IOException {
+            File archivo = new File("./ganadores");
+            FileWriter fw = null;
+            BufferedWriter bw = null;
+            try {
+                fw = new FileWriter(archivo, false);
+                bw = new BufferedWriter(fw);
+
+                bw.write( "El participate " + p.getUsuario() + " ha ganado el torneo " + t.getNombre() + "\n");
+                bw.flush();
+            } catch (Exception ex) {
+            }
+            bw.close();
+            fw.close();
+        }
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox admin_btn;
+    private javax.swing.JPanel bg_admin;
+    private javax.swing.JPanel bg_logIn;
+    private javax.swing.JPanel bg_participante;
+    private javax.swing.JPanel bg_rojo;
+    private javax.swing.JPanel bg_rojo1;
+    private javax.swing.JPanel bg_rojo2;
+    private javax.swing.JPanel bg_rojo3;
+    private javax.swing.JPanel bg_rojo4;
+    private javax.swing.JPanel bg_signIn;
+    private javax.swing.JPanel bg_torneo;
+    private javax.swing.JList<String> cerrados_lista;
+    private javax.swing.JButton cerrarTorneo_btn;
+    private javax.swing.JButton crearTorneo2_btn;
+    private javax.swing.JButton crearTorneo_btn;
+    private javax.swing.JButton crearUsuario_btn;
+    private javax.swing.JList<String> disponibles_lista;
+    private javax.swing.JList<String> ganados_lista;
+    private javax.swing.JButton iniciarSesion_btn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JLabel logo;
+    private javax.swing.JButton marcarGanador_btn;
+    private javax.swing.JTextField nombreTorneo_tf;
+    private javax.swing.JCheckBox participante_btn;
+    private javax.swing.JTextField passwordLogin_tf;
+    private javax.swing.JLabel passwordLogin_txt;
+    private javax.swing.JLabel passwordLogin_txt1;
+    private javax.swing.JTextField passwordSignIn_tf;
+    private javax.swing.JList<String> personas_list;
+    private javax.swing.JLabel personas_txt;
+    private javax.swing.JButton registrarSesion_btn;
+    private javax.swing.JSpinner rondas_spinner;
+    private javax.swing.JButton salir1_btn;
+    private javax.swing.JButton salir_btn;
+    private javax.swing.JList<String> torneos_list;
+    private javax.swing.JLabel torneos_txt;
+    private javax.swing.JButton unirseTorneo_btn;
+    private javax.swing.JTextField userLogin_tf;
+    private javax.swing.JLabel userLogin_txt;
+    private javax.swing.JLabel userLogin_txt1;
+    private javax.swing.JTextField userSignIn_tf;
     // End of variables declaration//GEN-END:variables
+
+    private ArrayList<User> usuarios = new ArrayList<>();
+    private ArrayList<Torneo> torneos = new ArrayList<>();
+    private User USER = null;
 }

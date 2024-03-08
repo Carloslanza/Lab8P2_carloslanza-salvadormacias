@@ -1,23 +1,23 @@
 package lab8p2_carloslanza.salvadormacias;
 
 public class Admin extends User {
-    private int torneosCreados;
+    private int torneos;
 
     public Admin(String usuario, String password) {
         super(usuario, password);
     }
 
-    public int getTorneosCreados() {
-        return torneosCreados;
+    public int getTorneos() {
+        return torneos;
     }
 
-    public void setTorneosCreados(int torneosCreados) {
-        this.torneosCreados = torneosCreados;
+    public void setTorneos(int torneos) {
+        this.torneos = torneos;
     }
 
     @Override
     public String toString() {
-        return "Admin{" + "torneosCreados=" + torneosCreados + '}';
+        return super.toString();
     }
     
 }
