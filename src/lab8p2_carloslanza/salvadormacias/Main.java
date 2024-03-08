@@ -747,9 +747,9 @@ public class Main extends javax.swing.JFrame {
     private void unirseTorneo_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unirseTorneo_btnMouseClicked
         
         if (!torneos.isEmpty()) {
-            String nombreTorneo = disponibles_lista.getSelectedValue();
+            Object nombreTorneo = disponibles_lista.getSelectedValue();
             for (Torneo torneo : torneos) {
-                if (torneo.getNombre().equals(nombreTorneo)) {
+                if (torneo.equals((Torneo)nombreTorneo)) {
                     if (USER instanceof Participante p) {
                         torneo.getParticipantes().add(p);
                     }
@@ -764,9 +764,9 @@ public class Main extends javax.swing.JFrame {
     private void cerrarTorneo_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarTorneo_btnMouseClicked
         
         if (!torneos.isEmpty()) {
-            String nombreTorneo = torneos_list.getSelectedValue();
+            Object nombreTorneo = torneos_list.getSelectedValue();
             for (Torneo torneo : torneos) {
-                if (torneo.getNombre().equals(nombreTorneo)) {
+                if (torneo.equals((Torneo)nombreTorneo)) {
                     torneo.setTerminado(true);
                     break;
                 }
@@ -776,12 +776,12 @@ public class Main extends javax.swing.JFrame {
 
     private void marcarGanador_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_marcarGanador_btnMouseClicked
         if (!torneos.isEmpty()) {
-            String nombreTorneo = torneos_list.getSelectedValue();
-            String nombreParticipante = personas_list.getSelectedValue();
+            Object nombreTorneo = torneos_list.getSelectedValue();
+            Object nombreParticipante = personas_list.getSelectedValue();
             for (Torneo torneo : torneos) {
-                if (torneo.getNombre().equals(nombreTorneo)) {
+                if (torneo.equals((Torneo)nombreTorneo)) {
                     for (Participante participante : torneo.getParticipantes()) {
-                        if (participante.getUsuario().equals(nombreParticipante)) {
+                        if (participante.equals((Participante)nombreParticipante)) {
                             torneo.setGanador(participante);
                             try {
                                 escribirArchivo(participante, torneo);
